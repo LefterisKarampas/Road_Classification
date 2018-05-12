@@ -2,7 +2,7 @@ class DTW:
 	def __init__(self, metric):
 		self.metric = metric
 
-	def Distance(self,origin,destination):
+	def Calculate(self,origin,destination):
 		n = len(origin)
 		m = len(destination)
 		Matrix = [[ float('Inf') for x in range(m)] for y in range(n)]

@@ -1,0 +1,24 @@
+Test_Trip_2
+Neighbor_1
+JP_ID: 01200001
+DTW: 0.0km
+
+Neighbor_2
+JP_ID: 01200001
+DTW: 4.04876501568km
+
+Neighbor_3
+JP_ID: 01200001
+DTW: 4.52868626023km
+
+Neighbor_4
+JP_ID: 01200001
+DTW: 4.61949680883km
+
+Neighbor_5
+JP_ID: 01200001
+DTW: 5.06744286445km
+
+dt = 150.06953311 secs
+
+

@@ -1,0 +1,24 @@
+Test_Subways_2
+Neighbor_1
+JP_ID: 040D1002
+#Matching Points: 81
+
+Neighbor_2
+JP_ID: 040D1002
+#Matching Points: 77
+
+Neighbor_3
+JP_ID: 040D1002
+#Matching Points: 74
+
+Neighbor_4
+JP_ID: 040D1002
+#Matching Points: 72
+
+Neighbor_5
+JP_ID: 040D1002
+#Matching Points: 71
+
+dt = 194.471316814 secs
+
+

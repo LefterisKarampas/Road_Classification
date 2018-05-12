@@ -15,3 +15,7 @@ def Harvesine(origin, destination):
     d = radius * c
 
     return d
+
+
+def Compare_Harvesine(origin,destination):
+    return (Harvesine(origin,destination) < 0.2)
