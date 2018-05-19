@@ -2,7 +2,7 @@ import operator
 
 class KNN:
 	
-	def __init__(self,k,metric,origin = None,reverse=True):
+	def __init__(self,k,metric,origin = None,reverse=True,):
 		self.k = k
 		self.metric = metric
 		self.origin = origin
@@ -16,12 +16,12 @@ class KNN:
 
 
 	def calculate_neighbor(self,destination,id):
-		dist = self.metric.Calculate(self.origin,destination)
+		dist,Matrix = self.metric.Calculate(self.origin,destination)
 
 		last = len(self.neigh) - 1
 
 		if (self.compare(dist, self.neigh[last][1])):
-			self.neigh[last] = (id,dist)
+			self.neigh[last] = (id,dist,Matrix)
 			self.neigh = sorted(self.neigh, key = lambda x: x[1],reverse=self.reverse)
 			self.neigh = self.neigh[:self.k]
 
@@ -97,11 +97,11 @@ class KNN:
 		return sortedVotes[0][0]	
 
 
-from Harvesine import Harvesine
-from DTW import DTW
+# from Harvesine import Harvesine
+# from DTW import DTW
 
 
-x = KNN(5,DTW(Harvesine),[[5,0,1],[6,0,2]])
-x.calculate_neighbor([[7,3,2],[8,1,3]],1)
-x.calculate_neighbor([[7,0,2],[8,0,3]],2)
-print x.results()
+# x = KNN(5,DTW(Harvesine),[[5,0,1],[6,0,2]],False)
+# x.calculate_neighbor([[7,3,2],[8,1,3]],1)
+# x.calculate_neighbor([[7,0,2],[8,0,3]],2)
+# print x.results()

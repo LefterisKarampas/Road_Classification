@@ -17,7 +17,7 @@ class LCSS:
 				else:
 					Matrix[i][j] = max(Matrix[i-1][j],Matrix[i][j-1])
 
-		return Matrix[n][m]
+		return Matrix[n][m],Matrix
 
 
 

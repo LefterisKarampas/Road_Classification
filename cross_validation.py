@@ -34,4 +34,4 @@ scoring = ['accuracy']
 
 classifier_pipeline = make_pipeline(knn)
 scores = cross_validate(classifier_pipeline, X, y, cv=10,scoring=scoring)
-print scores['test_accuracy']
+print mean(scores['test_accuracy'])

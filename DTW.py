@@ -13,4 +13,4 @@ class DTW:
 				cost = self.metric(origin[i],destination[j])
 				Matrix[i][j] = cost + min(min(Matrix[i-1][j],Matrix[i][j-1]),Matrix[i-1][j-1])
 
-		return Matrix[n-1][m-1]
+		return Matrix[n-1][m-1],[]
