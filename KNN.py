@@ -9,15 +9,21 @@ class KNN:
 		self.reverse = reverse
 		if reverse == True:
 			self.neigh = [ (None,float('-Inf')) for x in range(k) ]
+			self.compare = lambda x, y: x > y
 		else:
 			self.neigh = [ (None,float('Inf')) for x in range(k) ]
+			self.compare = lambda x,y: x < y
 
 
 	def calculate_neighbor(self,destination,id):
 		dist = self.metric.Calculate(self.origin,destination)
-		self.neigh.append((id,dist))
-		self.neigh = sorted(self.neigh, key = lambda x: x[1],reverse=self.reverse)
-		self.neigh = self.neigh[:self.k]
+
+		last = len(self.neigh) - 1
+
+		if (self.compare(dist, self.neigh[last][1])):
+			self.neigh[last] = (id,dist)
+			self.neigh = sorted(self.neigh, key = lambda x: x[1],reverse=self.reverse)
+			self.neigh = self.neigh[:self.k]
 
 	def results(self):
 		return self.neigh
@@ -91,11 +97,11 @@ class KNN:
 		return sortedVotes[0][0]	
 
 
-# from Harvesine import Harvesine
-# from DTW import DTW
+from Harvesine import Harvesine
+from DTW import DTW
 
 
-# x = KNN(5,DTW(Harvesine),[[5,0,1],[6,0,2]])
-# x.calculate_neighbor([[7,3,2],[8,1,3]],1)
-# x.calculate_neighbor([[7,0,2],[8,0,3]],2)
-# print x.results()
+x = KNN(5,DTW(Harvesine),[[5,0,1],[6,0,2]])
+x.calculate_neighbor([[7,3,2],[8,1,3]],1)
+x.calculate_neighbor([[7,0,2],[8,0,3]],2)
+print x.results()
