@@ -15,17 +15,15 @@ def print_map(traj,name,path,subway):
 		lan.append(i[2])
 
 	gmap = gmplot.GoogleMapPlotter(lan[0],lon[0],len(lon))
-	if subway == None:
-		gmap.plot(lan,lon,'green', edge_width=10)
-	else:
-		index = 0
-		for i in range(len(subway)):
-			start = subway[i][0]
-			end = subway[i][len(subway[i])-1]
-			gmap.plot(lan[index:start],lon[index:start],'green', edge_width=10)
-			gmap.plot(lan[start-1:end],lon[start-1:end],'red',edge_width=10)
-			index = end-1
-	#gmap.plot(lan,lon,'green', edge_width=5)
+	gmap.plot(lan,lon,'green', edge_width=10)
+	if subway != None:
+		lon = []
+		lan = []
+		#print subway
+		for j in subway:
+			lon.append(traj[j][1])
+			lan.append(traj[j][2])
+		gmap.plot(lan,lon,'red', edge_width=10)
 	gmap.draw(path+'/'+name+'.html')
 
 
@@ -46,16 +44,9 @@ def Find_Subsequence(Matrix):
 		elif(Matrix[i][j] == Matrix[i][j-1]):
 			j = j-1
 		else:
-			if(last == None):
-				subway.append([j])
-			elif last > j+1:
-				index+=1
-				subway.append([j])
-			else:
-				subway[index].insert(0,j)
-			last = j
 			i = i-1
 			j = j-1
+			subway.append(j)
 	return list(reversed(subway))
 
 
@@ -66,7 +57,8 @@ trainSet = pd.read_csv(
 	index_col='tripId')
 
 testSet = pd.read_csv(
-	'../test_set_a2.csv', # replace with the correct path
+	'test_dataset/test_set_a2.csv', # replace with the correct path
+	sep = "\t",
 	converters={"Trajectory": literal_eval})
 
 path = 'Test_Subways/'

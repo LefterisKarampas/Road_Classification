@@ -1,0 +1,24 @@
+Test_Subways_5
+Neighbor_1
+JP_ID: 01200001
+#Matching Points: 73
+
+Neighbor_2
+JP_ID: 01200001
+#Matching Points: 71
+
+Neighbor_3
+JP_ID: 01200002
+#Matching Points: 71
+
+Neighbor_4
+JP_ID: 01200001
+#Matching Points: 71
+
+Neighbor_5
+JP_ID: 01200001
+#Matching Points: 70
+
+dt = 175.829082012 secs
+
+

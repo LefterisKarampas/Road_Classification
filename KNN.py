@@ -2,7 +2,7 @@ import operator
 
 class KNN:
 	
-	def __init__(self,k,metric,origin = None,reverse=True,):
+	def __init__(self,k,metric,origin = None,reverse=True):
 		self.k = k
 		self.metric = metric
 		self.origin = origin
@@ -95,13 +95,3 @@ class KNN:
 
 		sortedVotes = sorted(votes.iteritems(), key=operator.itemgetter(1), reverse=True)
 		return sortedVotes[0][0]	
-
-
-# from Harvesine import Harvesine
-# from DTW import DTW
-
-
-# x = KNN(5,DTW(Harvesine),[[5,0,1],[6,0,2]],False)
-# x.calculate_neighbor([[7,3,2],[8,1,3]],1)
-# x.calculate_neighbor([[7,0,2],[8,0,3]],2)
-# print x.results()

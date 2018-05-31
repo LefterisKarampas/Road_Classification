@@ -15,20 +15,25 @@ trainSet = pd.read_csv(
 	converters={"Trajectory": literal_eval},
 	index_col='tripId')
 
-trainSet = trainSet[:400]
+#trainSet = trainSet[:400]
 
-train,test = train_test_split(trainSet,test_size=0.01)
+testSet = pd.read_csv(
+	'test_dataset/test_set_a2.csv', # replace with the correct path
+	sep = "\t",
+	converters={"Trajectory": literal_eval})
 
-print len(train)
-print len(test)
+#train,test = train_test_split(trainSet,test_size=0.01)
+
+#rint len(train)
+#print len(test)
 #Initialize Encoder
 le = preprocessing.LabelEncoder()
-le.fit(train["journeyPatternId"])
-y = le.transform(train["journeyPatternId"])
+le.fit(trainSet["journeyPatternId"])
+y = le.transform(trainSet["journeyPatternId"])
 
 
-X = train['Trajectory']
-Y = test['Trajectory']
+X = trainSet['Trajectory']
+Y = testSet['Trajectory']
 knn = KNN(5,DTW(Harvesine))
 
 knn.fit(X,y)
@@ -36,10 +41,10 @@ knn.fit(X,y)
 knn_pred = knn.predict(Y)
 predicted_categories = le.inverse_transform(knn_pred)
 print(predicted_categories)
-print(test['journeyPatternId'])
-# with open('testSet_JourneyPatternIDs.csv', 'wb') as csvfile:
-#     csvwriter = csv.writer(csvfile, delimiter=',',
-#                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-#     csvwriter.writerow(['tripId','journeyPatternId'])
-#     for i in range(len(test_data['tripId'])):
-#       csvwriter.writerow([str(test_data['tripId'][i]),predicted_categories[i]])
+
+with open('testSet_JourneyPatternIDs.csv', 'wb') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter=',',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    csvwriter.writerow(['Test_Trip_ID','Predicted_JourneyPatternID]'])
+    for i in range(len(testSet)):
+      csvwriter.writerow([str(i+1),predicted_categories[i]])

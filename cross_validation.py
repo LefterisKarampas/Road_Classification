@@ -12,20 +12,22 @@ from KNN import KNN
 from sklearn import preprocessing
 from DTW import DTW
 from Harvesine import Harvesine
+from sklearn.cross_validation import train_test_split
 
 trainSet = pd.read_csv(
 	'../train_set.csv', # replace with the correct path
 	converters={"Trajectory": literal_eval},
 	index_col='tripId')
 
-trainSet = trainSet[:100]
+train,_ = train_test_split(trainSet,test_size=0.9)
+
 
 #Initialize Encoder
 le = preprocessing.LabelEncoder()
-le.fit(trainSet["journeyPatternId"])
-y = le.transform(trainSet["journeyPatternId"])
+le.fit(train["journeyPatternId"])
+y = le.transform(train["journeyPatternId"])
 
-X = trainSet['Trajectory']
+X = train['Trajectory']
 
 knn = KNN(5,DTW(Harvesine))
 

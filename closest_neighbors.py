@@ -25,7 +25,8 @@ trainSet = pd.read_csv(
 	index_col='tripId')
 
 testSet = pd.read_csv(
-	'../test_set_a1.csv', # replace with the correct path
+	'test_dataset/test_set_a1.csv', # replace with the correct path
+	sep = "\t",
 	converters={"Trajectory": literal_eval})
 
 path = 'Test_Trip/'
